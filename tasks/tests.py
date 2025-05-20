@@ -36,7 +36,7 @@ class TaskViewTests(TestCase):
         response = self.client.post(reverse('task_list'), {
             'title': 'New Task',
             'description': 'New Description',
-            'is_completed': False
+            'is_completed': 'on'  
         })
         self.assertEqual(response.status_code, 302)
         self.assertEqual(Task.objects.count(), 2)
