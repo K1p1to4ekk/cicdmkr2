@@ -32,12 +32,13 @@ class TaskViewTests(TestCase):
         self.assertContains(response, "Test Task")
         self.assertTemplateUsed(response, 'tasks/task_list.html')
 
-    def test_task_create(self):
-        response = self.client.post(reverse('task_list'), {
-            'title': 'New Task',
-            'description': 'New Description',
-            'is_completed': 'on'  
-        })
-        self.assertEqual(response.status_code, 302)
-        self.assertEqual(Task.objects.count(), 2)
-        self.assertEqual(Task.objects.last().title, 'New Task')
+def test_task_create(self):
+    response = self.client.post(reverse('task_list'), {
+        'title': 'New Task',
+        'description': 'New Description',
+        'is_completed': 'on'
+    })
+    print(Task.objects.all())  # Дебаг: виведення всіх задач
+    self.assertEqual(response.status_code, 302)
+    self.assertEqual(Task.objects.count(), 2)
+    self.assertEqual(Task.objects.last().title, 'New Task')
